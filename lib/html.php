@@ -71,3 +71,20 @@ class Form extends HtmlElement{
 		parent::__construct($content,$attributes);
 	}
 }
+
+class Link extends HtmlElement{
+	public function __construct($content, $attributes = array()){
+		$this->tag = "a";
+		parent::__construct($content,$attributes);
+	}
+}
+
+class Image extends HtmlVoidElement{
+	public function __construct($src, $attributes = array()){
+		$this->tag = "img";
+		$attributes["src"]=$src;
+		parent::__construct($attributes);
+	}
+}
+
+
