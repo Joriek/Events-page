@@ -1,50 +1,36 @@
 <?php
 
 	include_once("lib/html.php");
+	include_once("lib/event.php");
 
-	$user_name ="";
-	if (isset($_POST['user_name'])) {
-		$user_name = $_POST['user_name'];
-	}
+	$imageSize = ["height" => 100, "width" => 100];
 
-	$real_name ="";
-	if (isset($_POST['real_name'])) {
-		$real_name = $_POST['real_name'];
-	}
 
-	$password ="";
-	if (isset($_POST['password'])) {
-		$password = $_POST['password'];
-	}
-
-	$showResult = !(empty($user_name) && empty($real_name) && empty($password));
+	$events = [	new Event('Event 1: Lorem ipsum dolor sit amet', 'img1.png', 'discription', 'date', 'time', 'website', 'email'),
+				new Event('Event 2: Consectetur adipisicing elit', 'img2.jpg', 'discription', 'date', 'time', 'website', 'email'),
+				new Event('Event 3: Sed do eiusmod ', 'img3.jpg', 'discription', 'date', 'time', 'website', 'email'),
+				new Event('Event 4: Tempor incididunt', 'img4.jpg', 'discription', 'date', 'time', 'website', 'email'),
+				new Event('Event 5: Dolore magna aliqua', 'img5.jpg', 'discription', 'date', 'time', 'website', 'email')];
 
 	$content = "";
 
-	if($showResult) {
-		$content = new Div( 
-			new Heading("Welkom $real_name") .
-			new Paragraph("Je gebruikersnaam is $user_name")
-			, array("class" => "jumbotron")
-		);  	
-	}else{ 
-		$content = new Div(
-			new Form(
-				new Heading("Please sign in", 2, array("class" => "form-signin-heading")) .
-				new Input("real_name", "text", array("class" => "form-control", "placeholder" => "Name")) .
-				new Input("user_name", "text", array("class" => "form-control", "placeholder" => "Username")) .
-				new Input("password", "password", array("class" => "form-control", "placeholder" => "Password")) .
-				new Button("Sign in", array("class" => "btn btn-lg btn-primary btn-block", "type" => "submit"))
-				, array("class" => "form-signin", "method" => "post")
-			), array("class" => "container")
-		);		
- 	} 
+	foreach ($events as $event) {
+		$content .= new Div(
+			new Link(
+				new Heading($event->title),
+				['href'=>'antwoord.php']
+			).
+			new image($event->image, $imageSize));
+	}
+
+		
+	
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Oefening PHP op POST en GET</title>
+	<title>Oefening Events</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/signup.css">
 </head>
