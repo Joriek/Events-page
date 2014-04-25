@@ -12,7 +12,7 @@
 			new image($event->image, $imageSize).
 			new Link(
 				new Heading($event->title),
-				['href'=>'antwoord.php']
+				['href'=>'antwoord.php?id='.$event->id]
 			)
 			);
 	}
