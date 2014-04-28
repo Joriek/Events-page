@@ -8,6 +8,7 @@ $event = $_GET["event"];
 $STH->setFetchMode(PDO::FETCH_ASSOC);
 while($row = $STH->fetch()){
 	if($row['id']==$_GET["event"]){
+		$id = $row['id'];
 		$content =	new Heading($row['Name'],1)."\n".
 					new Paragraph($row['Discription'])."\n".
 					new Image($row['Image'],$row['image_alt'])."\n".
@@ -15,9 +16,10 @@ while($row = $STH->fetch()){
 					new Link($row['Link'])."\n".
 					new Paragraph($row['Email'])."\n".
 					new Link("Back to events",array("href"=>"index.php","class"=>"btn btn-primary btn-lg active","role"=>"button")).
-					new Link("Edit Event",array("href"=>"editevent.php","class"=>"btn btn-primary btn-lg active","role"=>"button"));
+					new Link("Edit Event",array("href"=>"editevent.php?event=$id","class"=>"btn btn-primary btn-lg active","role"=>"button"));
 	}
 }
+
 ?>
  <!DOCTYPE html>
  <html>

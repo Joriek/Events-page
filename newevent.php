@@ -1,6 +1,6 @@
 <?php 
 include_once("lib/html.php");
-include_once("evenementen.php");
+include_once("lib/event.php");
 include_once("openDB.php");
 
 $content = 	new Paragraph(

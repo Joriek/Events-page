@@ -1,12 +1,13 @@
 <?php  
 		class Event
 		{
-		    public $title, $image, $discription, $date, $time, $website, $email;
+		    public $title, $image, $description, $date, $time, $website, $email, $id;
 
-		    public function __construct($title, $image, $discription, $date, $time, $website, $email){
-				$this->title = (string) $title;
+		    public function __construct($id, $title, $image, $description, $date, $time, $website, $email){
+		    	$this->id = $id;
+				$this->title = $title;
 				$this->image = $image;
-				$this->discription = $discription;
+				$this->description = $description;
 				$this->date = $date;
 				$this->time = $time;
 				$this->website = $website;
