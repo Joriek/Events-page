@@ -11,7 +11,7 @@ while($row = $STH->fetch()){
 		$id = $row['id'];
 		$content =	new Heading($row['Name'],1)."\n".
 					new Paragraph($row['Discription'])."\n".
-					new Image($row['Image'],$row['image_alt'])."\n".
+					new Image($row['Image'])."\n".
 					new Paragraph($row['Date']." ".$row['Time'])."\n".
 					new Link($row['Link'])."\n".
 					new Paragraph($row['Email'])."\n".

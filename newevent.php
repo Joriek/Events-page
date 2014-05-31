@@ -46,12 +46,6 @@ $content = 	new Paragraph(
 					,array("class"=>"col-sm-10"))
 				,array("class"=>"form-group")).
 				new Div(
-					new Label("Event image alternate text",array("for"=>"inputImagealt","class"=>"col-sm-2 control-label")).
-					new Div(
-						new Input("","text",array("class"=>"form-control","id"=>"inputImagealt","placeholder"=>"Image alternate text","Name"=>"Image_alt")) 
-					,array("class"=>"col-sm-10"))
-				,array("class"=>"form-group")).
-				new Div(
 					new Label("Event discription",array("for"=>"inputEventDiscription","class"=>"col-sm-2 control-label")).
 					new Div(
 						new Textarea("",array("class"=>"form-control","rows"=>"5","id"=>"inputEventDiscription","placeholder"=>"Event discription","Name"=>"Discription"))
@@ -68,7 +62,9 @@ $content = 	new Paragraph(
 if(isset($_POST['submit'])) {
 //	$Name=$_POST['Name'];
 //	echo $Name;
-	$Data=array("Name"=>$_POST["Name"],"Date"=>$_POST["Date"],"Time"=>$_POST["Time"],"Link"=>$_POST["Link"],"Email"=>$_POST["Email"],"Image"=>$_POST["Image"],"image_alt"=>$_POST["Image_alt"],"Discription"=>$_POST["Discription"]);
+	$Data=array("Name"=>$_POST["Name"],"Date"=>$_POST["Date"],"Time"=>$_POST["Time"],
+		"Link"=>$_POST["Link"],"Email"=>$_POST["Email"],
+		"Image"=>$_POST["Image"],"Discription"=>$_POST["Discription"]);
 	$STH2->execute($Data);
 }
 
