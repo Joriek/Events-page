@@ -4,12 +4,13 @@ include_once("lib/event.php");
 include_once("openDB.php");
 
 $content = "";
+$id2;
 
 $STH->setFetchMode(PDO::FETCH_ASSOC);
 
 while($row = $STH->fetch()){
 if($row['id']==$_GET["event"]){
-	$id = $row['id'];
+			$id = $row['id'];
 			$name = $row['Name'];
 			$date = $row['Date'];
 			$time = $row['Time'];
@@ -17,6 +18,22 @@ if($row['id']==$_GET["event"]){
 			$email = $row['Email'];
 			$image = $row['Image'];
 			$discription = $row['Discription'];
+
+try {
+	$host = "localhost";
+	$user = "root";
+	$pass = "";
+	$dbname = "oefening_events";
+	$DBH = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+	$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$DBH2 = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+	$DBH2->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	
+
+
+	} catch(PDOException $e) {
+	echo "I'm sorry. I'm afraid I can't do that.";
+}
 
 $content = 	new Paragraph(
 				new Div(
@@ -82,9 +99,9 @@ if(isset($_POST['submit'])) {
 		"Link"=>$_POST["Link"],"Email"=>$_POST["Email"],"Image"=>$_POST["Image"],
 		"Discription"=>$_POST["Discription"]);
 	$STH2->execute($Data);
+	$DBH->query('SELECT id,Name,Date,Time,Link,Email,Image,Discription from events;');
+	$DBH2->query("DELETE FROM events WHERE id= '$id' ");
 }
-
-
 ?>
 
 <!DOCTYPE html>
